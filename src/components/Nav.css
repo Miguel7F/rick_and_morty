@@ -1,0 +1,7 @@
+.Nav{
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    background-color: rgb(155, 205, 248);
+    border: 1px solid rgb(154, 236, 0);
+}
