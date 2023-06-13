@@ -23,10 +23,7 @@ function App() {
    }
 
    const onClose=(id)=> {
-      console.log(characters)
-      console.log(id)
       const newCharacters = characters.filter(character => character.id !== Number(id))
-      console.log(newCharacters)
       setCharacters(newCharacters)
    }
 
