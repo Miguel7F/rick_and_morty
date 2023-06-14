@@ -9,7 +9,7 @@ function App() {
 
    function onSearch(id) {
       if (characters.some(character => character.id === Number(id))){
-         window.alert('Ya encontraste este personaje');
+         window.alert('Ya agregaste este personaje');
    }else{
       axios(`https://rickandmortyapi.com/api/character/${id}`)
       .then(({ data }) => {

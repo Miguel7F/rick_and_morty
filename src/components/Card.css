@@ -1,3 +1,53 @@
 .card {
-    
+    border-radius: 10px;
+}
+
+.containerText {
+    position: relative;
+    background-color:white;
+    border: 1px solid steelblue;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px;
+    padding-top: 30px;
+    margin-bottom: 20px;
+    width: 200px;
+    height: 50%;
+    border-radius: 50px;
+    opacity: 0.70;
+}
+.circle-container {
+    position: relative;
+    top: +10%;
+    z-index: 1;
+
+}
+
+.button {
+    padding: 1px 2px;
+    opacity: 0.7;
+    background-color: steelblue;
+    float: right;
+}
+
+.button:hover {
+    opacity: 1;
+    background-color: red;
+    color: white;
+}
+
+h2 {
+    text-decoration: underline;
+    text-decoration-color: steelblue;
+    text-transform: uppercase;
+}
+
+img {
+    justify-content: center;
+    width: 200px;
+    border-radius: 100px;
+}
+img:hover{
+    transition: box-shadow 0.3s ease;
+    box-shadow: 0 0 50px rgba(255, 255, 255 , 1);
 }
