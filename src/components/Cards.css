@@ -1,7 +1,7 @@
 .cards{
     display: flex;
     margin-top: 30px;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
     justify-content: space-around;
 
 }
