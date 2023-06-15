@@ -1,0 +1,48 @@
+.searchBar {
+    padding: 10px;
+    display: flex;
+}
+
+.divText{
+    color: #ffff;
+    font-weight: bold;
+    font-size: 35px;
+    font-weight: bold;
+    align-self: center;
+    margin-right: 10px;
+    text-shadow: 2px 2px 0 blue, -2px -2px 0 violet;
+}
+
+.inputText {
+    color: slateblue;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    
+    width: 200px;
+    height: 35px;
+    align-self: center;
+    margin: 10px;
+    border-radius: 6px;
+
+}
+
+.searchButton {
+    color: white;
+    font-size: 18px;
+
+    width: 150px;
+    height: 35px;
+    margin: 10px;
+    background-color: steelblue;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+}
+
+.searchButton:hover {
+    background-color: violet;
+    color: rgba(8, 0, 0, 0.781);
+    font-weight: bold;
+    transition: 0.8s ease;
+}

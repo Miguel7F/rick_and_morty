@@ -1,0 +1,25 @@
+.Nav{
+    padding: 10px;
+    display: flex;
+    justify-content: space-around  ;
+}
+
+.navButton {
+    color: white;
+    font-size: 18px;
+
+    width: 150px;
+    height: 35px;
+    margin: 10px;
+    background-color: steelblue;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+}
+
+.navButton:hover{
+    background-color: violet;
+    color:rgba(8, 0, 0, 0.781);
+    font-weight: bold;
+    transition: 0.8s ease;
+}
