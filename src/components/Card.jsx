@@ -1,4 +1,7 @@
 import "./Card.css"
+import { Link } from "react-router-dom";
+
+
 export default function Card(props) {
    const { id, name, status, species, gender, origin, image, onClose } = props
    return (
@@ -8,7 +11,7 @@ export default function Card(props) {
             <img src={image} alt={name} />
          </div>
          <div className="containerText">
-            <h2>{name}</h2>
+            <Link to={`/detail/${id}`}>   <h2>{name}</h2>   </Link>
             <p>Status: {status}</p>
             <p>Specie: {species}</p>
             <p>Gender: {gender}</p>
