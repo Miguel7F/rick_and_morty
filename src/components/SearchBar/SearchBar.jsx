@@ -7,14 +7,15 @@ export default function SearchBar({ onSearch }) {
    function handleChange(event) {
       setId(event.target.value)
    }
-   const randomNumber=Math.floor(Math.random()*825)+1
+   const randomNumber = Math.floor(Math.random() * 825) + 1
 
    return (
       <div className={styles.searchBar}>
-         <div className={styles.divText}>Search Bar:  </div>
+         <div className={styles.divText}>Search Bar:
             <input className={styles.inputText} type='search' onChange={handleChange} value={id} name="id" placeholder="Insert id..." />
-            <button className={styles.searchButton} key="btSearch" onClick={() => { onSearch(id); setId("") }}>Agregar</button>
-            <button className={styles.searchButton} key="btRandom" onClick={() => { onSearch(randomNumber)} }>Random</button>
+            <button className={styles.button} key="btSearch" onClick={() => { onSearch(id); setId("") }}>Agregar</button>
+            <button className={styles.button} key="btRandom" onClick={() => { onSearch(randomNumber) }}>Random</button>
+         </div>
       </div>
    );
 }

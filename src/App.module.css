@@ -1,22 +1,19 @@
-.divApp {
-    display: block;
-    padding: 5px;
+.navButton {
+    color: white;
+    font-size: 14px;
+
+    width: 80px;
+    height: 20px;
+    margin: 10px;
+    background-color: steelblue;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
 }
 
-.welcomeH1 {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-style: italic;
-    font-size: 40px;
-    display: flex;
-    justify-content: center;
-    
-    animation: colorChange 2s alternate infinite;
+.navButton:hover{
+    background-color: violet;
+    color:rgba(8, 0, 0, 0.781);
+    font-weight: bold;
+    transition: 0.3s ease;
 }
-
-@keyframes colorChange {
-    0% { color: rgb(255, 255, 255); }
-    25% { color: #FB9F89; }
-    50% { color: #c4af9a; }
-    75% { color: #81ae9d; }
-    100% { color: #21A179; }
-  }

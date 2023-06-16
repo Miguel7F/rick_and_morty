@@ -6,11 +6,12 @@
 .divText{
     color: #ffff;
     font-weight: bold;
-    font-size: 35px;
+    font-size: 30px;
     font-weight: bold;
     align-self: center;
     margin-right: 10px;
     text-shadow: 2px 2px 0 blue, -2px -2px 0 violet;
+
 }
 
 .inputText {
@@ -27,7 +28,7 @@
 
 }
 
-.searchButton {
+.button {
     color: white;
     font-size: 18px;
 
@@ -40,9 +41,9 @@
     border-radius: 6px;
 }
 
-.searchButton:hover {
+.button:hover {
     background-color: violet;
     color: rgba(8, 0, 0, 0.781);
     font-weight: bold;
-    transition: 0.8s ease;
+    transition: 0.3s ease;
 }
