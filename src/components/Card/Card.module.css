@@ -2,6 +2,8 @@
     border-radius: 10px;
 }
 
+
+/*TODO: CORREGIR EL ESPACIO DEL TEXTO */
 .containerText {
     position: relative;
     background-color:white;
@@ -14,13 +16,13 @@
     height: 50%;
     border-radius: 50px;
     opacity: 0.70;
+    z-index: -1;
 }
 
 .containerImage {
     position: relative;
     top: +10%;
     left: +5%;
-    z-index: 1;
 }
 .image {
     justify-content: center;

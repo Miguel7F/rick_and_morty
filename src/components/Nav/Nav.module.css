@@ -32,8 +32,7 @@
     font-size: 30px;
     display: flex;
     justify-content: center;
-    
-    animation: colorChange 2s alternate infinite;
+    animation: colorChange 2s alternate infinite;   
 }
 
 @keyframes colorChange {
