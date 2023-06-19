@@ -27,18 +27,11 @@
 .form input[type="password"] {
     width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
 }
 .form input[type="radio"] {
-    margin-bottom: 10px;
-}
-
-.etiqueta{
-    width: 150px;
-    margin-bottom: 10px;
-    
+    margin: 10px;
 }
 
 .form input[type="submit"] {
@@ -51,10 +44,19 @@
     cursor: pointer;
 }
 
+.etiqueta{
+    width: 150px;   
+}
  .mostrarDiv{
     color: red;
+    text-align: end;
+    font-size: 10px;
+    margin-bottom: 10px;
  }
 
  .ocultarDiv{
     display: none;
+ }
+ .disabledInput{
+    opacity: 0.4;
  }

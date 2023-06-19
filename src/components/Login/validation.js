@@ -1,21 +1,26 @@
 export default function validation({email,password}){
-    var validaCorreo = /^(([^<>()\[\]\\.,;:\s@”]{7,35}(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]{1,35}\.)+[a-zA-Z]{2,}))$/
-    var validaPassword=/^(?=.*\d)\S.{6,10}$/
-       
+    const validaCorreo = /^(([^<>()\[\]\\.,;:\s@”]{7,35}(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]{1,35}\.)+[a-zA-Z]{2,}))$/
+    const validaPassword=/^(?=.*\d)\S.{6,10}$/
+    const devolver={}
 
-    if(email && email!=="Debe llenar el campo email"){
-        if(!validaCorreo.test(email)){
-            email="El email debe cumplir con el formato requerido"
-        }else{email="Correcto"}
-    }else { email="Debe llenar el campo email"}
+    if(email!==undefined){
+        if(email===""){
+            devolver.email="Debe ingresar un email"
+        }else if(validaCorreo.test(email)){
+            devolver.email="Correcto"
+        }else{
+            devolver.email="El email debe cumplir con el formato requerido"
+        }
+    }
 
-    if(password && password!=="Debe llenar el campo password"){
-        if(!validaPassword.test(password)){
-            password="El password debe cumplir con el formato requerido"
-        }else{password="Correcto"}
-    }else { password="Debe llenar el campo password"}
-
-    return {email,password}
+    if(password!==undefined){
+        if(password===""){
+            devolver.password="Debe ingresar un password"
+        }else if(validaPassword.test(password)){
+            devolver.password="Correcto"
+        }else{
+            devolver.password="El password debe cumplir con el formato requerido"
+        }
+    }
+    return devolver
 }
-
-//console.log(validation({}))

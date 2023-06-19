@@ -1,35 +1,37 @@
 import React, { useState } from 'react'
 import styles from './Login.module.css'
 import login from './login.png';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import validation from './validation.js'
 
 export default function Login() {
-    const [userData, setUserData] = useState({
-        email: "",
-        password: "",
-        bot: false,
-    })
 
+    const navigate=useNavigate()
+    const EMAIL = "ejemplo@soyejemplo.com"
+    const PASSWORD = "Ejemplo1"
+
+    let [access, setAccess] = useState(false)
+    const [userData, setUserData] = useState({ bot: false})
     const [errors, setErrors] = useState({})
 
-    function handleChange(event) {
-        if (event.target.id !== "siBot") {
-            setUserData({ ...userData, [event.target.name]: event.target.value })
-        } else { setUserData({ ...userData, [event.target.name]: false }) }
-    }
-
-//? quitar la validación de userData, trabajar solo con la validación de setError con evento ONBLUR
-
     function validateError(event) {
-        {/* //! corregir el mensaje cuando salgamos del cajón colocando correctamente los datos */ }
-        const {email,password}=validation({ ...errors, [event.target.name]: event.target.value })
-        setErrors({...errors,email:email,password:password})
+        if (event.target.name === "bot") {
+            event.target.id === "noBot" ? setUserData({ ...userData, bot: true }) : setUserData({ ...userData, bot: false })
+        } else {
+            setUserData({ ...userData, [event.target.name]: event.target.value })
+            const estado = validation({ [event.target.name]: event.target.value })
+            setErrors({ ...errors, ...estado })
+        }
     }
 
-
-    function handleSubmit() {
-
+    function handleSubmit(event) {
+        event.preventDefault()
+        if (userData.password === PASSWORD && userData.email === EMAIL && userData.bot){
+            setAccess(access=true)
+            navigate("/home")
+        }else{
+            alert("El usuario o contraseña son incorrectos")
+        }
     }
 
     return (
@@ -44,40 +46,38 @@ export default function Login() {
                         type="text"
                         key='email'
                         name='email'
-                        value={userData.email}
-                        onChange={handleChange}
                         onBlur={validateError}
+                        title='Características del email'
                         placeholder='Ingresa tu email' />
                 </div>
-
-                {/* //! corregir la visibilidad del div para cuando no haya error */ }
-                <div className={styles.mostrarDiv}>{errors.email}</div>
+                <div className={errors.email && errors.email === "Correcto" ? styles.ocultarDiv : styles.mostrarDiv}>{errors.email}</div>
 
                 <div className={styles.container}>
                     <div className={styles.etiqueta}>Password: </div>
                     <input
                         type="password"
                         key="password"
-                        value={userData.password}
                         name='password'
-                        onChange={handleChange}
                         onBlur={validateError}
                         placeholder='Ingresa tu contraseña' />
                 </div>
+                <div className={errors.password && errors.password === "Correcto" ? styles.ocultarDiv : styles.mostrarDiv}>{errors.password}</div>
 
-                {/* //! corregir la visibilidad del div para cuando no haya error */ }
-                <div className={styles.mostrarDiv}>{errors.password}</div>
-            
                 <div className={styles.container}>
-                    <input type="radio" key="noBotRadio" id='noBot' name='bot' onChange={handleChange} />
+                    <input type="radio" key="noBotRadio" id='noBot' name='bot' onChange={validateError} />
                     <div className={styles.etiqueta} htmlFor='noBot'> No soy un BOT </div>
-                    <input type="radio" key="siBotRadio" id='siBot' name='bot' onChange={handleChange} defaultChecked />
+
+                    <input type="radio" key="siBotRadio" id='siBot' name='bot' onChange={validateError} defaultChecked />
                     <div className={styles.etiqueta} htmlFor='siBot'> Sí, soy un BOT </div>
                 </div>
-                <Link to="/home">
-                    <input disabled={!userData.bot} type="submit" key='submit' value='Sign up'></input>
-                </Link>
-
+                <input
+                    /*className={errors.bot?undefined:styles.ocultarDiv}*/ /*//! No se muestra el input*/
+                    className={(userData.bot && errors?.email==="Correcto" &&errors?.password==="Correcto")? undefined : styles.disabledInput}
+                    disabled={!(userData.bot && errors?.email==="Correcto" && errors?.password==="Correcto")}
+                    type="submit"
+                    key='submit'
+                    value='Sign up'>
+                </input>
             </form>
         </div>
     )
