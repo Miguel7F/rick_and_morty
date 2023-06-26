@@ -1,0 +1,31 @@
+.titulo{
+    display: flex;
+    justify-content: center;
+
+    font-style: italic;
+    align-self: center;
+    font-size: 50px;
+    animation: colorChange 2s alternate infinite;   
+}
+@keyframes colorChange {
+    0% { color: rgb(255, 255, 255); }
+    25% { color: #FB9F89; }
+    50% { color: #c4af9a; }
+    75% { color: #81ae9d; }
+    100% { color: #21A179; }
+  }
+
+.personajes{
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: space-around;
+}
+.info{
+    background-color:white;
+    border: 1px solid steelblue;
+    text-align: center;
+    gap: 10%;
+    width: 30%;
+    border-radius: 50px;
+    opacity: 0.70;
+}

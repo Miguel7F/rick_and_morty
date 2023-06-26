@@ -1,0 +1,25 @@
+.containerFiltro {
+    display: flex;
+    flex-flow: wrap row;
+    justify-content:space-evenly;
+    gap: 20px;
+    padding: 20px;
+}
+
+.containerFiltro span {
+    color: white;
+    font-size: 22px;
+}
+
+.containerFiltro select {
+    width: 250px;
+    height: 30px;
+    text-align: center;
+    background-color: violet;
+    color: white;
+    font-size: 20px;
+    align-self: center;
+}
+.containerFiltro label{
+    margin-right: 25px;
+}

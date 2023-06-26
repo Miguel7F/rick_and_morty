@@ -1,0 +1,54 @@
+.Nav{
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: space-around ;
+    background-color: cornflowerblue;
+    padding: 1%;
+}
+
+.link{
+    text-decoration: none;
+    color:whitesmoke;
+}
+
+.navButton {
+    color: white;
+    font-size: 18px;
+
+    width: 150px;
+    height: 35px;
+    margin: 10px;
+    background-color: steelblue;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+}
+
+.navButton:hover{
+    background-color: violet;
+    font-weight: bold;
+    transition: 0.5s ease;
+}
+
+
+.navButton {
+    color: white;
+    font-size: 14px;
+
+    width: 80px;
+    height: 20px;
+    margin: 10px;
+    background-color: steelblue;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px; 
+    /*background: linear-gradient(150deg,crimson,sienna, royalblue, indianred, purple);*/
+    background: linear-gradient(150deg,violet,steelblue,violet,royalblue);
+    background-size: 200% 100%;
+    animation: BgGradient 5s ease infinite;
+}
+@keyframes BgGradient {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}

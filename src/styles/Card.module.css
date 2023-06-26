@@ -2,7 +2,6 @@
     border-radius: 10px;
 }
 
-
 /*TODO: CORREGIR EL ESPACIO DEL TEXTO */
 .containerText {
     position: relative;
@@ -18,7 +17,9 @@
     opacity: 0.70;
     z-index: -1;
 }
-
+.link{
+    text-decoration: none;
+}
 .containerImage {
     position: relative;
     top: +10%;
@@ -34,30 +35,42 @@
     box-shadow: 0 0 50px rgba(255, 255, 255 , 1);
 }
 
-.button {
+
+.close {
     background-color: violet;
     padding: 1px 2px;
-    border-radius: 30%;
+    border-radius: 100%;
     border: none;
     color: white;
     font-weight: bold;
-    font-size: larger;
+    font-size:larger;
 
     float:right;
     opacity: 0.3;
 }
 
-.button:hover {
+.close:hover {
     opacity: 1;
     background-color: red;
+}
+
+.fav{
+    background-color: violet;
+    padding: 1px 2px;
+    border-radius: 100%;
+    border: none;
+    font-weight: bold;
+    font-size: larger;
+
+    float:left;
+    opacity: 0.3;
+}
+.fav:hover {
+    opacity: 1;
 }
 
 .name {
     text-transform: uppercase;
     color: steelblue;
     font-weight: bolder;
-}
-
-.link{
-    text-decoration:none;
 }

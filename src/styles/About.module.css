@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    flex-flow: wrap row;
+    gap: 1%;
+    justify-content: space-around;
+}
+
+.containerText {
+    box-sizing: border-box;
+    width: 45%;
+    padding: 30px;
+    color: whitesmoke;
+}
+
+.containerText a {
+    text-decoration: none;
+    color: yellow;
+    font-size: x-large;
+}
+
+.containerImg {
+    box-sizing: border-box;
+    width: 45%;
+    padding: 30px;
+    position: relative;
+}
+
+.containerImg img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

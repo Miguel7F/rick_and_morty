@@ -1,6 +1,6 @@
 .cards{
     display: flex;
-    flex-flow: wrap-reverse row-reverse;
+    flex-wrap: wrap;
     justify-content: space-around;
     gap: 30px
 }

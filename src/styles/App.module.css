@@ -1,0 +1,12 @@
+/*todo Mejorar barra anclada de navegación*/
+.nav{
+    position: fixed;
+    z-index: 1;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    padding-bottom: 10px;
+    opacity: 1;
+}
+

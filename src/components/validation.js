@@ -1,4 +1,4 @@
-export default function validation({email,password}){
+function validation({email,password}){
     const validaCorreo = /^(([^<>()\[\]\\.,;:\s@”]{7,35}(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]{1,35}\.)+[a-zA-Z]{2,}))$/
     const validaPassword=/^(?=.*\d)\S.{6,10}$/
     const devolver={}
@@ -24,3 +24,5 @@ export default function validation({email,password}){
     }
     return devolver
 }
+
+export {validation};

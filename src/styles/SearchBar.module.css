@@ -1,47 +1,47 @@
-.searchBar {
-    padding: 10px;
+.divText{
     display: flex;
+    flex-flow: wrap row;
+    justify-content: center;
+    padding: 20px;
+    gap: 10px;
 }
 
-.divText{
+.divText span{
     color: #ffff;
+    text-shadow: 2px 2px 0 blue, -2px -2px 0 violet;
     font-weight: bold;
     font-size: 30px;
-    font-weight: bold;
-    align-self: center;
-    margin-right: 10px;
-    text-shadow: 2px 2px 0 blue, -2px -2px 0 violet;
-
+    width: 200px;
+    height: 35px;
+    align-items: center;
 }
-
-.inputText {
+.divText input {
     color: slateblue;
     font-size: 18px;
     font-weight: bold;
     text-align: center;
     
-    width: 200px;
+    width: 150px;
     height: 35px;
-    align-self: center;
-    margin: 10px;
+    border: none;
     border-radius: 6px;
-
+    padding:0px;
 }
 
-.button {
+.divText button {
     color: white;
     font-size: 18px;
+    font-weight: bold;
 
     width: 150px;
     height: 35px;
-    margin: 10px;
     background-color: steelblue;
     cursor: pointer;
     border: none;
     border-radius: 6px;
 }
 
-.button:hover {
+.divText button:hover {
     background-color: violet;
     color: rgba(8, 0, 0, 0.781);
     font-weight: bold;
