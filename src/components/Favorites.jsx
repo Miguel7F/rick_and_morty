@@ -1,27 +1,31 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Cards from './Cards'
 import styles from '../styles/Favorites.module.css'
 import { useEffect, useState } from 'react'
+import { sortA,sortD } from '../redux/action'
 
-export default function Detail() {
+export default function Favorites() {
+  const dispatch = useDispatch()
   const myFavorites = useSelector(state => state.myFavorites)
+  const filterSortFav = useSelector(state => state.filterSortFav)
 
-  const [filterSort, setFilterSort] = useState({
+  const [modify, setModify] = useState({
     gender: "sinFiltros",
     direction: "A",
   })
 
   function handleChange(event) {
-    setFilterSort({ ...filterSort, [event.target.name]: event.target.value })
+    setModify({ ...modify, [event.target.name]: event.target.value })
+    console.log( [event.target.name],event.target.value )
   }
 
   useEffect(() => {
-    if (filterSort.gender !== "sinFiltros") {
-      //const toSort=[...myFavorites.filter(fav => fav.gender === filterSort.gender)]
-    }else{
-      //const toSort=[myFavorites]
-    }
-  }, [filterSort])
+    //una sola sentencia que filtra según el valor de gender 
+    const toSort = modify.gender !== "sinFiltros" ?
+      myFavorites.filter(fav => fav.gender === modify.gender) :
+      myFavorites;
+    modify.direction === "A" ? dispatch(sortA(toSort)) : dispatch(sortD(toSort))
+  }, [modify])
 
   return (
     <div>
@@ -41,7 +45,7 @@ export default function Detail() {
           </select>
         </div>
       </div>
-      <Cards characters={myFavorites} />
+      <Cards characters={filterSortFav} />
     </div>
   )
 }
