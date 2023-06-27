@@ -29,9 +29,13 @@ export default function Favorites() {
       default:break;
     }
   }
+  useEffect(()=>{
+    //Se usa para hacer el renderizado cuando el filterSortFav se haya actualizado.Es necesario para cuando se haya agregado o retirado algún elemento de favoritos (cuando aún se mantiene en el array principal)
+  },[filterSortFav])
 
   useEffect(()=>{
     dispatch(arrFav(toFilterSort(myFavorites,modify.gender,modify.direction)))
+    //! El uso de la dependencia vacía es estríctamente necesaria para evitar la renderización infinita.
   },[])
 
   return (

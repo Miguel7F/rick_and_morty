@@ -9,6 +9,9 @@ export default function SearchBar() {
    const characters = useSelector(state => state.characters)
    const myFavorites=useSelector(state=>state.myFavorites)
    
+   // console.log("Characters --->",characters)
+   // console.log("My favorites --->",myFavorites)
+
    const [id, setId] = useState(0)
 
    function handleChange(event) {

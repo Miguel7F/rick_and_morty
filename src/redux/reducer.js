@@ -10,9 +10,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
     //devuelve un nuevo array con los elementos favorite en true
     function fav(arrToFilter) { return arrToFilter?.filter(char => char.favorite) }
     //devuelve un nuevo array retirando el elemento que se envió como payload (id)
-    function removeChars(arrToRemove){return arrToRemove?.filter(char => char.id !== payload)}
+    function removeChars(arrToRemove, payload) { return arrToRemove?.filter(char => char.id !== payload) }
     //Cambia el estado de la propiedad favorite del ID enviado por payload (true-> false o viceversa)
-    function chFav(arrToChange){return arrToChange?.forEach(char => char.id === payload? char.favorite = !char.favorite:null )}
+    function characterFav(arrToChange, payload) {
+        arrToChange.forEach(char => { if (char.id === payload) char.favorite = !char.favorite })
+        return arrToChange
+    }
 
     switch (type) {
         case TO_ACCESS:
@@ -22,17 +25,20 @@ const rootReducer = (state = initialState, { type, payload }) => {
             return { ...state, characters: [payload, ...state.characters] }
 
         case REMOVE_CHARACTER:
-            return {...state,
-                characters: removeChars(state.characters),
-                myFavorites: removeChars(state.myFavorites),
-                filterSortFav: removeChars(state.filterSortFav),
+            return {
+                ...state,
+                characters: removeChars(state.characters, payload),
+                myFavorites: removeChars(state.myFavorites, payload),
+                filterSortFav: removeChars(state.filterSortFav, payload),
             }
 
         case CHANGE_FAV:
-            return { ...state, 
-                //characters: chFav(state.characters),
-                //myFavorites: removeChars(state.myFavorites),
-                //filterSortFav: removeChars(state.filterSortFav),
+            return {
+                ...state,
+                characters: characterFav(state.characters, payload),
+                //! Atención: en myFavorites se trabaja sobre el array "state.Characters" que ya fue modificado previamente al asignar el nuevo valor a "characters" 
+                myFavorites: fav(state.characters),
+                filterSortFav: fav(state.characters),
             }
 
         case ARR_FAV:
