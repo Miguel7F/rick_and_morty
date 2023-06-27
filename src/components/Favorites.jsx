@@ -2,12 +2,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import Cards from './Cards'
 import styles from '../styles/Favorites.module.css'
 import { useEffect, useState } from 'react'
-import { sortA,sortD } from '../redux/action'
+import {arrFav} from '../redux/action'
+import { toFilterSort } from './functions'
 
 export default function Favorites() {
   const dispatch = useDispatch()
-  const myFavorites = useSelector(state => state.myFavorites)
-  const filterSortFav = useSelector(state => state.filterSortFav)
+  const myFavorites=useSelector(state=>state.myFavorites)
+  const filterSortFav=useSelector(state=>state.filterSortFav)
 
   const [modify, setModify] = useState({
     gender: "sinFiltros",
@@ -15,17 +16,23 @@ export default function Favorites() {
   })
 
   function handleChange(event) {
-    setModify({ ...modify, [event.target.name]: event.target.value })
-    console.log( [event.target.name],event.target.value )
+    const name=event.target.name
+    const value=event.target.value
+    setModify({ ...modify, [name]: value })
+    switch (name) {
+      case "gender":
+        dispatch(arrFav(toFilterSort(myFavorites,value,modify.direction)))
+        break;
+      case "direction":
+        dispatch(arrFav(toFilterSort(myFavorites,modify.gender,value)))
+        break;
+      default:break;
+    }
   }
 
-  useEffect(() => {
-    //una sola sentencia que filtra según el valor de gender 
-    const toSort = modify.gender !== "sinFiltros" ?
-      myFavorites.filter(fav => fav.gender === modify.gender) :
-      myFavorites;
-    modify.direction === "A" ? dispatch(sortA(toSort)) : dispatch(sortD(toSort))
-  }, [modify])
+  useEffect(()=>{
+    dispatch(arrFav(toFilterSort(myFavorites,modify.gender,modify.direction)))
+  },[])
 
   return (
     <div>
@@ -40,8 +47,8 @@ export default function Favorites() {
         </div>
         <div>
           <select name='direction' onChange={handleChange}>
-            <option value="A">Orden Ascendente</option>
-            <option value="D">Orden descendente</option>
+            <option value="A">Orden Ascendente ⬆</option>
+            <option value="D">Orden descendente ⬇</option>
           </select>
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from '../styles/Login.module.css'
 import login from '../imagens/login.png'
 import { useNavigate } from 'react-router-dom';
-import { validation } from './validation'
+import { validation } from './functions'
 import { EMAIL, PASSWORD, toAccess} from '../redux/action'
 import { useDispatch, useSelector } from 'react-redux';
 

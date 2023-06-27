@@ -4,9 +4,7 @@ export const ADD_CHARACTER = "ADD_CHARACTER"
 export const REMOVE_CHARACTER = "REMOVE_CHARACTER"
 export const TO_ACCESS = "TO_ACCESS"
 export const CHANGE_FAV = "CHANGE_FAV"
-export const SORT_A="SORT_A"
-export const SORT_D="SORT_D"
-
+export const ARR_FAV="ARR_FAV"
 
 const API_PERSONAJE = "https://rickandmortyapi.com/api/character/"
 export const EMAIL = "ejemplo@soyejemplo.com"
@@ -43,16 +41,9 @@ export const changeFav = (id) => {
     }
 }
 
-export const sortA = (filtered) => {
+export const arrFav=(payload)=>{
     return {
-        type: SORT_A,
-        payload: filtered,
-    }
-}
-
-export const sortD = (filtered) => {
-    return {
-        type: SORT_D,
-        payload: filtered,
+        type: ARR_FAV,
+        payload: payload,
     }
 }

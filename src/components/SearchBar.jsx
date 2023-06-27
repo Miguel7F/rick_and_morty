@@ -8,6 +8,7 @@ export default function SearchBar() {
    const dispatch = useDispatch()
    const characters = useSelector(state => state.characters)
    const myFavorites=useSelector(state=>state.myFavorites)
+   
    const [id, setId] = useState(0)
 
    function handleChange(event) {

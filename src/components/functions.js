@@ -1,3 +1,5 @@
+//Esta función recibe un objeto que debe contar con email o password (solo recibe uno)
+//Su función es validar, con REGEX, si los datos enviados cumplen con el mínimo de requisitos.
 function validation({email,password}){
     const validaCorreo = /^(([^<>()\[\]\\.,;:\s@”]{7,35}(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]{1,35}\.)+[a-zA-Z]{2,}))$/
     const validaPassword=/^(?=.*\d)\S.{6,10}$/
@@ -25,4 +27,14 @@ function validation({email,password}){
     return devolver
 }
 
-export {validation};
+//Esta función recibirá un arreglo y dos strings que indicará como ordenarlo y filtrarlo
+function toFilterSort(array,gender,direction) {
+    const filtered = gender === "sinFiltros" ? array: array.filter(fav => fav.gender === gender) 
+
+    const sortedFavorites = direction === "A" ?
+      filtered.sort((a, b) => a.id - b.id) :
+      filtered.sort((a, b) => b.id - a.id);
+    return sortedFavorites
+}
+
+export {validation,toFilterSort};
