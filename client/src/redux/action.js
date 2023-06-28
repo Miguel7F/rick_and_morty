@@ -19,12 +19,10 @@ export const toAccess = (toAccess) => {
 
 export const addCharacter = (id) => {
     return async function (dispatch) {
-        console.log(`${API_PERSONAJE}${id}`)
-        const response = await axios.get(`${API_PERSONAJE}${id}`)
-        console.log(response)
+        const {data} = await axios.get(`${API_PERSONAJE}${id}`)
         return dispatch({
             type: ADD_CHARACTER,
-            payload: { favorite: false, ...response.data },
+            payload: { favorite: false, ...data },
         })
     }
 }
