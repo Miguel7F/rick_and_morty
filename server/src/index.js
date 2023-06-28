@@ -13,6 +13,6 @@ http.createServer((req,res)=>{
     if(urlconcat==="/rickandmorty/character"){
         const personaje=data.filter(char=>char.id===id)
         res.writeHead(200, { "Content-Type": "application/json" })
-        res.end(JSON.stringify(personaje))
+        res.end(JSON.stringify(personaje[0]))
     }
 }).listen(PORT, "localhost");
