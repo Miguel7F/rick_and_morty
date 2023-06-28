@@ -6,10 +6,10 @@ export const TO_ACCESS = "TO_ACCESS"
 export const CHANGE_FAV = "CHANGE_FAV"
 export const ARR_FAV="ARR_FAV"
 
-const API_PERSONAJE = "https://rickandmortyapi.com/api/character/"
 export const EMAIL = "ejemplo@soyejemplo.com"
 export const PASSWORD = "Ejemplo1"
 
+const API_PERSONAJE = "http://localhost:3001/rickandmorty/character/"
 export const toAccess = (toAccess) => {
     return {
         type: TO_ACCESS,

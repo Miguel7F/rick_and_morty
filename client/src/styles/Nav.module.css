@@ -1,0 +1,19 @@
+.Nav{
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: space-around ;
+    background-color: steelblue;
+    padding: 1%;
+}
+
+.link{
+    text-decoration: none;
+    color:whitesmoke;
+    font-size: 20px;
+}
+

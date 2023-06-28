@@ -2,8 +2,8 @@
     display: flex;
     flex-flow: wrap row;
     justify-content: center;
-    padding: 20px;
     gap: 10px;
+    padding-top: 50px;
 }
 
 .divText span{

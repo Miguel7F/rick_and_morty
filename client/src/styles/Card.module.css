@@ -1,0 +1,84 @@
+.card {
+    border-radius: 10px;
+}
+
+/*TODO: CORREGIR EL ESPACIO DEL TEXTO */
+.containerText {
+    position: relative;
+    background-color: white;
+    border: 1px solid steelblue;
+    overflow: hidden;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    max-width: 250px;
+    min-height: 45%;
+    border-radius: 50px;
+    opacity: 0.70;
+    z-index: -1;
+}
+
+.containerText table {
+    width: 100%;
+    gap: 10px;
+}
+
+.containerText th,td {
+    width: 33%;
+    text-align: center;
+}
+.containerText th{
+    text-decoration: underline;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.containerImage {
+    position: relative;
+    top: +10%;
+}
+
+.image {
+    justify-content: center;
+    width: 200px;
+    border-radius: 100px;
+}
+
+.image:hover {
+    transition: box-shadow 0.3s ease;
+    box-shadow: 0 0 50px white;
+}
+
+.containerImage button {
+    position: relative;
+    background-color: transparent;
+    width: 25px;
+    padding: 0px;
+    border: none;
+    font-weight: bold;
+    font-size: larger;
+    opacity: 0.5;
+}
+
+.containerImage button:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.close {
+    right: 20px;
+    float: right;
+}
+
+.fav {
+    left: 20px;
+    float: left;
+}
+
+.containerText h2 {
+    text-transform: uppercase;
+    color: steelblue;
+    font-weight: bold;
+}

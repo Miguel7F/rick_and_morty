@@ -31,7 +31,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 myFavorites: removeChars(state.myFavorites, payload),
                 filterSortFav: removeChars(state.filterSortFav, payload),
             }
-
+            
         case CHANGE_FAV:
             return {
                 ...state,
