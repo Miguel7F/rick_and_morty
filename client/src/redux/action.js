@@ -8,8 +8,8 @@ export const ARR_FAV="ARR_FAV"
 
 export const EMAIL = "ejemplo@soyejemplo.com"
 export const PASSWORD = "Ejemplo1"
-
 const API_PERSONAJE = "http://localhost:3001/rickandmorty/character/"
+
 export const toAccess = (toAccess) => {
     return {
         type: TO_ACCESS,

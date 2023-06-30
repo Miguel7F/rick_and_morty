@@ -1,7 +1,17 @@
+import { useSelector } from 'react-redux'
 import logHenry from '../imagens/Logo Henry.png'
 import styles from '../styles/About.module.css'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export default function About() {
+  const navigate=useNavigate()
+  const access = useSelector(state => state.access)
+
+    useEffect(() => {
+        !access && navigate("/")
+    }, [])
+
   return (
     <div className={styles.container}>
       <div className={styles.containerText}>

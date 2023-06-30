@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../styles/SearchBar.module.css'
 import Cards from './Cards'
 import { useDispatch, useSelector } from 'react-redux';
 import { addCharacter } from '../redux/action'
+import { useNavigate } from 'react-router-dom';
 
 export default function SearchBar() {
    const dispatch = useDispatch()
+   const navigate=useNavigate()
    const characters = useSelector(state => state.characters)
-   const myFavorites=useSelector(state=>state.myFavorites)
-   
-   // console.log("Characters --->",characters)
-   // console.log("My favorites --->",myFavorites)
+   const myFavorites = useSelector(state => state.myFavorites)
+   const access = useSelector(state => state.access)
+
+   useEffect(() => {
+      !access && navigate("/")
+   }, [])
 
    const [id, setId] = useState(0)
 
@@ -49,7 +53,7 @@ export default function SearchBar() {
             <button key="btSearch" name="add" onClick={handleClic} >Agregar</button>
             <button key="btRandom" name="random" onClick={handleClic} >Random</button>
          </div>
-         <Cards characters={characters}/>
+         <Cards characters={characters} />
       </div>
    );
 }

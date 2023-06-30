@@ -1,23 +1,20 @@
-import React, {  useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../styles/Login.module.css'
 import login from '../imagens/login.png'
 import { useNavigate } from 'react-router-dom';
 import { validation } from './functions'
-import { EMAIL, PASSWORD, toAccess} from '../redux/action'
-import { useDispatch } from 'react-redux';
+import { EMAIL, PASSWORD, toAccess } from '../redux/action'
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Login() {
     const navigate = useNavigate()
-    const dispatch=useDispatch()
-    
-    /*
-    //? debería serviri para poder verificar si el usuario ya está logueado y mandarlo al home 
-    const access = useSelector(state => state.access) 
-    useEffect(()=>{
+    const dispatch = useDispatch()
+    const access = useSelector(state => state.access)
+
+    useEffect(() => {
         access && navigate("/home")
-    },[])
-    */
-    
+    }, [])
+
 
     const [userData, setUserData] = useState({ bot: false })
     const [errors, setErrors] = useState({})
@@ -80,11 +77,13 @@ export default function Login() {
                 <div className={errors.password && errors.password === "Correcto" ? styles.ocultarDiv : styles.mostrarDiv}>{errors.password}</div>
 
                 <div className={styles.container}>
-                    <input type="radio" key="noBotRadio" id='noBot' name='bot' onChange={validateError} />
-                    <label htmlFor='noBot'> No soy un BOT </label>
+                    <label htmlFor='noBot'>
+                        <input type="radio" key="noBotRadio" id='noBot' name='bot' onChange={validateError} />
+                        No soy un BOT </label>
 
-                    <input type="radio" key="siBotRadio" id='siBot' name='bot' onChange={validateError} defaultChecked />
-                    <label htmlFor='siBot'> Sí, soy un BOT </label>
+                    <label htmlFor='siBot'>
+                        <input type="radio" key="siBotRadio" id='siBot' name='bot' onChange={validateError} defaultChecked />
+                        Sí, soy un BOT </label>
                 </div>
                 <input
                     /*className={(condicional)=styles.ocultarDiv}*/ /*//! No se muestra el input */

@@ -1,10 +1,11 @@
-import { TO_ACCESS, ADD_CHARACTER, REMOVE_CHARACTER, CHANGE_FAV, ARR_FAV } from './action'
+import { TO_ACCESS, ADD_CHARACTER, REMOVE_CHARACTER, CHANGE_FAV, ARR_FAV} from './action'
 
 const initialState = {
     myFavorites: [],
     filterSortFav: [],
     characters: [],
     access: false,
+
 }
 const rootReducer = (state = initialState, { type, payload }) => {
     //devuelve un nuevo array con los elementos favorite en true
@@ -31,7 +32,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 myFavorites: removeChars(state.myFavorites, payload),
                 filterSortFav: removeChars(state.filterSortFav, payload),
             }
-            
+
         case CHANGE_FAV:
             return {
                 ...state,
