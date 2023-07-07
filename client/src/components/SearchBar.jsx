@@ -7,16 +7,16 @@ import { useNavigate } from 'react-router-dom';
 
 export default function SearchBar() {
    const dispatch = useDispatch()
-   const navigate=useNavigate()
+   const navigate = useNavigate()
    const characters = useSelector(state => state.characters)
-   const myFavorites = useSelector(state => state.myFavorites)
+   const myFavorites = useSelector(state => state.myFavorites) //?Se usa para actualizar el render
    const access = useSelector(state => state.access)
 
    useEffect(() => {
       !access && navigate("/")
    }, [])
 
-   const [id, setId] = useState(0)
+   const [id, setId] = useState("")
 
    function handleChange(event) {
       setId(Number(event.target.value))
@@ -31,6 +31,7 @@ export default function SearchBar() {
          } else {
             dispatch(addCharacter(id))
          }
+         setId("")
       }
       //Se valida si el botón es "Agregar" o "Random".
       //Se establece condiciones para el ingreso del dato.
@@ -49,7 +50,8 @@ export default function SearchBar() {
       <div>
          <div className={styles.divText}>
             <span>Search Bar:</span>
-            <input type='number' name="id" onChange={handleChange} placeholder="Insert id..." />
+            <input   type='number' name="id" value={id} min="1"
+                     onChange={handleChange} placeholder="Insert id..." />
             <button key="btSearch" name="add" onClick={handleClic} >Agregar</button>
             <button key="btRandom" name="random" onClick={handleClic} >Random</button>
          </div>

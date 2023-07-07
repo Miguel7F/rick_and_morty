@@ -1,13 +1,15 @@
 import styles from '../styles/Nav.module.css'
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import {toAccess} from '../redux/action'
 
 export default function Nav() {
    const dispatch=useDispatch()
+   const navigate=useNavigate()
 
    function handleClick() {
-      dispatch(toAccess(false))
+      const userData={email:"",password:""}
+      dispatch(toAccess(userData))
    }
    
    return (

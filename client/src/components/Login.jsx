@@ -3,23 +3,18 @@ import styles from '../styles/Login.module.css'
 import login from '../imagens/login.png'
 import { useNavigate } from 'react-router-dom';
 import { validation } from './functions'
-import { EMAIL, PASSWORD, toAccess } from '../redux/action'
+import {toAccess } from '../redux/action'
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function Login() {
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const access = useSelector(state => state.access)
-
-    useEffect(() => {
-        access && navigate("/home")
-    }, [])
-
-
     const [userData, setUserData] = useState({ bot: false })
     const [errors, setErrors] = useState({})
 
-    function validateError(event) {
+    function handleChange(event) {
         const name = event.target.name
         const value = event.target.value
         switch (name) {
@@ -28,24 +23,23 @@ export default function Login() {
                 break;
             default:
                 setUserData({ ...userData, [name]: value })
+                //La siguiente línea validará si se ingresaron datos incompatibles en el form
                 const estado = validation({ [name]: value })
                 setErrors({ ...errors, ...estado })
                 break;
         }
     }
-
     function handleSubmit(event) {
         event.preventDefault()
-        if (userData.password === PASSWORD && userData.email === EMAIL && userData.bot) {
-            dispatch(toAccess(true))
-            navigate("/home")
-        } else {
-            alert("El usuario o contraseña son incorrectos")
-        }
+        dispatch(toAccess(userData))
     }
+    useEffect(() => {
+        access && navigate("/home")
+    //! queda pendiente implementar alert("El usuario o contraseña son incorrectos")
+    }, [access])
 
     return (
-        <div className={styles.container}>
+        <div className={access?styles.ocultarDiv:styles.container}>
             <form className={styles.form} onSubmit={handleSubmit}>
                 <div className={styles.imgContainer}>
                     <img className={styles.image} src={login} alt="Login" />
@@ -58,7 +52,7 @@ export default function Login() {
                         id='email'
                         name='email'
                         autoComplete='email'
-                        onChange={validateError} /*Podemos aplicar onBlur en su lugar*/
+                        onChange={handleChange} /*Podemos aplicar onBlur en su lugar*/
                         placeholder='Ingresa tu email' />
 
                 </div>
@@ -71,18 +65,18 @@ export default function Login() {
                         key="password"
                         id='password'
                         name='password'
-                        onChange={validateError} /*Podemos aplicar onBlur en su lugar*/
+                        onChange={handleChange} /*Podemos aplicar onBlur en su lugar*/
                         placeholder='Ingresa tu contraseña' />
                 </div>
                 <div className={errors.password && errors.password === "Correcto" ? styles.ocultarDiv : styles.mostrarDiv}>{errors.password}</div>
 
                 <div className={styles.container}>
                     <label htmlFor='noBot'>
-                        <input type="radio" key="noBotRadio" id='noBot' name='bot' onChange={validateError} />
+                        <input type="radio" key="noBotRadio" id='noBot' name='bot' onChange={handleChange} />
                         No soy un BOT </label>
 
                     <label htmlFor='siBot'>
-                        <input type="radio" key="siBotRadio" id='siBot' name='bot' onChange={validateError} defaultChecked />
+                        <input type="radio" key="siBotRadio" id='siBot' name='bot' onChange={handleChange} defaultChecked />
                         Sí, soy un BOT </label>
                 </div>
                 <input

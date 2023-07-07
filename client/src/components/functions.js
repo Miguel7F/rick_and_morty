@@ -1,3 +1,7 @@
+import axios from "axios"
+
+const API_PERSONAJE = "http://localhost:3001/rickandmorty/"
+
 //Esta función recibe un objeto que debe contar con email o password (solo recibe uno)
 //Su función es validar, con REGEX, si los datos enviados cumplen con el mínimo de requisitos.
 function validation({email,password}){
