@@ -8,37 +8,31 @@ export const ARR_FAV = "ARR_FAV"
 
 const API_PERSONAJE = "http://localhost:3001/rickandmorty/"
 
-export const toAccess = (login) => {
-    return async function (dispatch) {
-        axios.get(`${API_PERSONAJE}/login?email=${login.email}&password=${login.password}`)
-            .then(({ data }) => dispatch({
-                type: TO_ACCESS,
-                payload: data.access,
-            }))
+export const toAccess = (access) => {
+    return {
+        type: TO_ACCESS,
+        payload: access,
     }
 }
 
-export const addCharacter = (id) => {
-    return async function (dispatch) {
-        const { data } = await axios.get(`${API_PERSONAJE}character/${id}`)
-        return dispatch({
-            type: ADD_CHARACTER,
-            payload: { favorite: false, ...data },
-        })
+export const addCharacter = (characters) => {
+    return {
+        type: ADD_CHARACTER,
+        payload: characters,
     }
 }
 
-export const removeCharacter = (id) => {
+export const removeCharacter = (characters) => {
     return {
         type: REMOVE_CHARACTER,
-        payload: id,
+        payload: characters,
     }
 }
 
-export const changeFav = (id) => {
+export const changeFav = (characters) => {
     return {
         type: CHANGE_FAV,
-        payload: id,
+        payload: characters,
     }
 }
 

@@ -1,16 +1,11 @@
 import { useSelector } from 'react-redux'
-import logHenry from '../imagens/Logo Henry.png'
+import perfil from '../imagens/Perfil.jpg'
 import styles from '../styles/About.module.css'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
 export default function About() {
   const navigate=useNavigate()
-  const access = useSelector(state => state.access)
-
-    useEffect(() => {
-        !access && navigate("/")
-    }, [])
 
   return (
     <div className={styles.container}>
@@ -22,8 +17,8 @@ export default function About() {
       </div>
 
       <div className={styles.containerImg}>
-        <a href="https://www.soyhenry.com/" target="_blank" rel="noreferrer">
-          <img src={logHenry} alt="Logo de Henry" />
+        <a target="_blank" rel="noreferrer">
+          <img className={styles.image} src={perfil} alt="Logo de Henry" />
         </a>
       </div>
     </div>

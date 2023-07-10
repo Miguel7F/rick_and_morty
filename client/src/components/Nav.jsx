@@ -8,8 +8,8 @@ export default function Nav() {
    const navigate=useNavigate()
 
    function handleClick() {
-      const userData={email:"",password:""}
-      dispatch(toAccess(userData))
+      navigate('/')
+      dispatch(toAccess(false))
    }
    
    return (

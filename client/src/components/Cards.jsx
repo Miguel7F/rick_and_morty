@@ -2,18 +2,32 @@ import { useDispatch } from "react-redux";
 import Card from './Card'
 import { removeCharacter, changeFav } from '../redux/action'
 import styles from '../styles/Cards.module.css'
+import axios from 'axios'
 
-export default function Cards({characters}) {
+export default function Cards({ characters }) {
    const dispatch = useDispatch()
 
-   function onClose(id) {
-      dispatch(removeCharacter(id))
+   async function onClose(id) {
+      await axios.delete(`http://localhost:3001/rickandmorty/character/${id}`)
+         .then(({ data }) => {
+            dispatch(removeCharacter(data))
+         })
+         .catch(({ response }) => {
+            alert(response.data)
+         })
    }
-   function onFav(id){
-      dispatch(changeFav(id))
+
+   async function onFav(id) {
+      await axios.put(`http://localhost:3001/rickandmorty/character/${id}`)
+         .then(({ data }) => {
+           dispatch(changeFav(data))
+         })
+         .catch(({ response }) => {
+            alert(response.data)
+         })
    }
    function isFav(favorite) {
-      return favorite?"💖":"🤍"
+      return favorite ? "💖" : "🤍"
    }
 
    return (

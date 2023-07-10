@@ -71,6 +71,11 @@
     right: 20px;
     float: right;
 }
+.disabled{
+    right: 20px;
+    float: right;
+    visibility: hidden;
+}
 
 .fav {
     left: 20px;

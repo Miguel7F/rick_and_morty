@@ -1,12 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import styles from '../styles/Card.module.css'
 
 export default function Card({ id, name, status, species, gender, origin, image, onClose, onFav, isFav }) {
+   const {pathname} = useLocation();
    return (
       <div className={styles.card} key={id}>
          <div className={styles.containerImage}>
             <button className={styles.fav} onClick={() => onFav(id)}>{isFav}</button>
-            <button className={styles.close} onClick={() => onClose(id)}>❌</button>
+            <button className={pathname==="/favorites"?styles.disabled:styles.close} onClick={() => onClose(id)}>❌</button>
             <NavLink to={`/detail/${id}`} className={styles.link}> <img className={styles.image} src={image} alt={name} /></NavLink>
          </div>
          <div className={styles.containerText}>

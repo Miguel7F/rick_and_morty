@@ -1,18 +1,14 @@
-const { getCharById } = require("../controllers/getCharById")
-const { login } = require("../controllers/login")
-const { postFav, deleteFav } = require("../controllers/handleFavorites")
-const { Router } = require("express")
+const loginRouter = require('./loginRouter')
+const characterRouter = require('./characterRouter')
+const favRouter = require('./favRouter')
+const router = require("express").Router();
 
-const router = Router()
-
-router.get("/login", login)
-router.post("/fav",postFav)
-router.delete("/fav/:id", deleteFav)
-
-// ?dejo una función como ejemplo de cómo están trabando las demás funciones
-router.get("/character/:id", (req, res) => {
-    getCharById(req, res)
-})
+router.use('/login', loginRouter)
+router.use('/character', characterRouter)
+router.use('/favorites',favRouter)
+// router.post("/fav",postFav)
+// router.delete("/fav/:id", deleteFav)
+//router.get("/character/:id", (req, res) => { getCharById(req, res)})
 
 
-module.exports =  {router} ;
+module.exports = router;

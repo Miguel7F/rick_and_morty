@@ -1,49 +1,70 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
 import Cards from './Cards'
 import styles from '../styles/Favorites.module.css'
-import { useEffect, useState } from 'react'
-import {arrFav} from '../redux/action'
-import { toFilterSort } from './functions'
-import { useNavigate } from 'react-router-dom'
+import { arrFav } from '../redux/action'
+import axios from "axios"
 
 export default function Favorites() {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const myFavorites=useSelector(state=>state.myFavorites)
-  const filterSortFav=useSelector(state=>state.filterSortFav)
-  const access=useSelector(state=>state.access)
-
-  useEffect(() => {
-    !access && navigate("/")
-  }, [])
+  const sortFilFavorites = useSelector(state => state.sortFilFavorites)
+  const favorites = useSelector(state => state.favorites)
 
   const [modify, setModify] = useState({
     gender: "sinFiltros",
     direction: "A",
   })
 
-  function handleChange(event) {
-    const name=event.target.name
-    const value=event.target.value
-    setModify({ ...modify, [name]: value })
+  async function handleChange(event) {
+    const name = event.target.name
+    const value = event.target.value
+
     switch (name) {
       case "gender":
-        dispatch(arrFav(toFilterSort(myFavorites,value,modify.direction)))
+        await axios.post(`http://localhost:3001/rickandmorty/character/favorites`, { gender: value, direction: modify.direction })
+          .then(({ data }) => {
+            dispatch(arrFav(data))
+          })
+          .catch(({ response }) => {
+            alert(response.data)
+          })
         break;
       case "direction":
-        dispatch(arrFav(toFilterSort(myFavorites,modify.gender,value)))
+        await axios.post(`http://localhost:3001/rickandmorty/character/favorites`, { gender: modify.gender, direction: value })
+          .then(({ data }) => {
+            dispatch(arrFav(data))
+          })
+          .catch(({ response }) => {
+            alert(response.data)
+          })
         break;
-      default:break;
+      default: break;
     }
+    //? Se envía a actualizar los datos para el renderizado
+    setModify({ ...modify, [name]: value })
   }
-  useEffect(()=>{
-    //Se usa para hacer el renderizado cuando el filterSortFav se haya actualizado.Es necesario para cuando se haya agregado o retirado algún elemento de favoritos (cuando aún se mantiene en el array principal)
-  },[filterSortFav])
 
-  useEffect(()=>{
-    dispatch(arrFav(toFilterSort(myFavorites,modify.gender,modify.direction)))
-    //! El uso de la dependencia vacía es estríctamente necesaria para evitar la renderización infinita.
-  },[])
+  async function iniciar() {
+    await axios.post(`http://localhost:3001/rickandmorty/character/favorites`, { gender: modify.gender, direction: modify.direction })
+      .then(({ data }) => {
+        dispatch(arrFav(data))
+      })
+      .catch(({ response }) => {
+        alert(response.data)
+      })
+  }
+
+
+  useEffect(() => {
+    //? Cuando se actualiza el array de favorites se actualiza la página
+    iniciar()
+  }, [favorites])
+
+  useEffect(() => {
+    //? Para cargar favoritos al iniciar. El uso de la dependencia vacía es estríctamente necesaria para evitar la renderización infinita.
+    iniciar()
+  }, [])
+
 
   return (
     <div>
@@ -63,7 +84,7 @@ export default function Favorites() {
           </select>
         </div>
       </div>
-      <Cards characters={filterSortFav} />
+      <Cards characters={sortFilFavorites} />
     </div>
   )
 }

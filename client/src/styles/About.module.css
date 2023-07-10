@@ -2,10 +2,11 @@
     display: flex;
     flex-flow: wrap row;
     gap: 1%;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .containerText {
+    margin-top: 100px;
     box-sizing: border-box;
     width: 45%;
     padding: 30px;
@@ -30,4 +31,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.image {
+    justify-content: center;
+    width: 200px;
+    border-radius: 100px;
 }

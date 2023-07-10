@@ -1,57 +1,58 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/SearchBar.module.css'
 import Cards from './Cards'
+import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
 import { addCharacter } from '../redux/action'
-import { useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 
 export default function SearchBar() {
-   const dispatch = useDispatch()
-   const navigate = useNavigate()
-   const characters = useSelector(state => state.characters)
-   const myFavorites = useSelector(state => state.myFavorites) //?Se usa para actualizar el render
+   const navigate=useNavigate()
    const access = useSelector(state => state.access)
+   const [id, setId] = useState("")
+   const dispatch = useDispatch()
+   const characters = useSelector(state => state.characters)
 
    useEffect(() => {
-      !access && navigate("/")
+      axios.get(`http://localhost:3001/rickandmorty/character`)
+         .then(({ data }) => {
+            dispatch(addCharacter(data))
+         })
+         .catch(({ response }) => {
+            alert(response.data)
+         })
    }, [])
 
-   const [id, setId] = useState("")
-
    function handleChange(event) {
-      setId(Number(event.target.value))
+      setId(event.target.value)
    }
 
-   function handleClic(event) {
-      //Función validar que determina si el personaje ya existe, para no duplicarlo.
-      //Se llamará luego de otras validaciones
-      function validar(id) {
-         if (characters.some(char => char.id === id)) {
-            window.alert('Este personaje ya fue agregado');
-         } else {
-            dispatch(addCharacter(id))
-         }
-         setId("")
-      }
-      //Se valida si el botón es "Agregar" o "Random".
-      //Se establece condiciones para el ingreso del dato.
-      if (event.target.name === "add") {
-         if (id < 1 || id > 826 || !Number.isInteger(id)) {
-            return window.alert('No hay personajes con este ID');
-         } else {
-            validar(id)
-         }
-      } else {
-         validar(Math.floor(Math.random() * 825) + 1)
+   async function handleClic(event) {
+      setId("")
+      const { name } = event.target
+      const enviarID = { id: name === 'add' ? Number(id) : Math.floor(Math.random() * 825) + 1 }
+      if (enviarID.id < 1) alert('Solo se aceptan números mayores a cero (0)')
+
+      else {
+         await axios.post(`http://localhost:3001/rickandmorty/character`, enviarID)
+            .then(({ data }) => {
+               dispatch(addCharacter(data))
+            })
+            .catch(({ response }) => {
+               alert(response.data)
+            })
       }
    }
-
+   useEffect(()=>{
+      !access&&navigate("/")
+   },[])
+   
    return (
-      <div>
+      <div className={access?undefined:styles.ocultarDiv}>
          <div className={styles.divText}>
             <span>Search Bar:</span>
-            <input   type='number' name="id" value={id} min="1"
-                     onChange={handleChange} placeholder="Insert id..." />
+            <input type='number' name="id" value={id} min="1"
+               onChange={handleChange} placeholder="Insert id..." />
             <button key="btSearch" name="add" onClick={handleClic} >Agregar</button>
             <button key="btRandom" name="random" onClick={handleClic} >Random</button>
          </div>
